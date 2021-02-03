@@ -692,9 +692,11 @@ function warnType1(evt) {
         alert(evt.eventType + "if" + evt.constructor.name + " currentTarget " + evt.currentTarget + " target " + evt.target + " parent " + evt.parent);
         return false;
     }
-    if ("fonts" in evt.target) {
-        var dok = evt.target;
-        log.warnInfo("Document " + dok.name);
+    // log.info(evt.target.constructor.name);
+    if (evt.target.constructor.name == "LayoutWindow") {
+        var dok = app.activeDocument;
+        
+        log.info("Document " + dok.name);
         log.warnInfo(localize({ en: "The following Type1 fonts will be disabled in January 2023. See https://creativepro.com/adobe-is-ending-support-for-type-1-fonts/", de: "Die folgenden Type1 Schriften werden im Januar 2023 deaktiviert. Mehr Infos unter https://creativepro.com/adobe-is-ending-support-for-type-1-fonts/" }) + "\n");
         var type1Array = [];
         for (var i = 0; i < dok.fonts.length; i++) {
